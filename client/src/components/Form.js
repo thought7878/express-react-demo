@@ -3,23 +3,55 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 class Form extends Component {
+  state = {
+    title: '',
+    category: '',
+    body: ''
+  }
+
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+  handleClick = e => {
+    e.preventDefault()
+    this.props.submit(this.state)
+  }
+
   render() {
     return (
       <Wrap>
         <div>
           <label>分类</label>
-          <input type="text" />
+          <input
+            name="category"
+            value={this.state.category}
+            onChange={this.handleChange}
+            type="text"
+          />
         </div>
         <div>
           <label>标题</label>
-          <input type="text" />
+          <input
+            name="title"
+            value={this.state.title}
+            onChange={this.handleChange}
+            type="text"
+          />
         </div>
         <div>
           <label>内容</label>
-          <textarea name="" cols="30" rows="20" />
+          <textarea
+            name="body"
+            value={this.state.body}
+            onChange={this.handleChange}
+            cols="30"
+            rows="20"
+          />
         </div>
         <div className="actions">
-          <button type="submit">提交</button>
+          <button onClick={this.handleClick}>提交</button>
           <Link to="/" className="link">
             取消
           </Link>
