@@ -4,8 +4,8 @@ const bodyParser = require('body-parser')
 
 app.use(bodyParser.json())
 
-app.listen(3000, () => {
-  console.log('server is running port 3000!')
+app.listen(3001, () => {
+  console.log('server is running port 3001!')
 })
 
 // mongoose
