@@ -1,5 +1,5 @@
 import React from 'react'
-
+import Form from './Form'
 export default props => {
-  return <div>new post</div>
+  return <Form />
 }
