@@ -1,0 +1,17 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "startDB": "mongod --port 27017 --dbpath ./data",
+    "startME": "mongo-express -u admin -p admin -d express-react-demo -H localhost -P 27017"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.3"
+  }
+}
