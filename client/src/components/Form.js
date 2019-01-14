@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 class Form extends Component {
-  state = {
+  state = this.props.post || {
     title: '',
     category: '',
     body: ''

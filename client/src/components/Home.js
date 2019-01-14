@@ -24,6 +24,9 @@ class Home extends Component {
             <Link className="link" to={`/post/${p._id}`}>
               查看
             </Link>
+            <Link className="link" to={`/post/${p._id}/edit`}>
+              编辑
+            </Link>
           </div>
         </Card>
       )
