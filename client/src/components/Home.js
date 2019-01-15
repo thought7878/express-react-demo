@@ -3,10 +3,26 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import axios from 'axios'
 import { API_SERVER } from '../constants/ApiConstants'
+import Dialog from './Dialog'
 
 class Home extends Component {
   state = {
-    posts: []
+    id: '',
+    posts: [],
+    isDialogShown: false
+  }
+  openDialog = id => {
+    this.setState({ id, isDialogShown: true })
+  }
+  closeDialog = async cancel => {
+    this.setState({ isDialogShown: false })
+    if (cancel) return
+    // 删除
+    const { id } = this.state
+    await axios.delete(`${API_SERVER}/post/${id}`)
+    // this.props.history.push('/')
+    const posts = this.state.posts.filter(p => p._id !== id)
+    this.setState({ posts })
   }
 
   async componentDidMount() {
@@ -27,6 +43,9 @@ class Home extends Component {
             <Link className="link" to={`/post/${p._id}/edit`}>
               编辑
             </Link>
+            <Link to="" className="link" onClick={() => this.openDialog(p._id)}>
+              删除
+            </Link>
           </div>
         </Card>
       )
@@ -37,6 +56,7 @@ class Home extends Component {
           写文章
         </Link>
         {postList}
+        <Dialog isShown={this.state.isDialogShown} close={this.closeDialog} />
       </Wrap>
     )
   }
